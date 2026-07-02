@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Início | Brota Tchuca Oficial</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="icon" type="image/webp" href="https://4c010466ba.cbaul-cdnwnd.com/1cf6b935d7a8ddd4774af758372afb34/200000013-c7945c7947/CAPA%20BROTA%20TCHUCA%202.0~2.webp?ph=4c010466ba">
+    
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <div id="menu-lateral" class="menu-lateral">
+        <div class="topo-menu-lateral">
+            <i class="bi bi-x icone-fechar" id="botao-fechar-menu"></i>
+        </div>
+        
+        <div class="conteudo-menu-lateral">
+            <a href="home.html" class="item-menu-lateral">INÍCIO</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Tenho%20interesse%20na%20camiseta%20%22Brota%20Tchuca%22" class="item-menu-lateral">CAMISETA</a>
+            <a href="https://wa.me/5598987261116?text=Opa%21%20Tenho%20interesse%20nas%20m%C3%BAsicas%20atualizadas%20%E2%80%94%20Edi%C3%A7%C3%A3o%20de%20Junho." class="item-menu-lateral">REPERTÓRIO</a>
+            <a href="https://chat.whatsapp.com/BGoASDx1FXmJaKVPWAYPkB" class="item-menu-lateral">GRUPO OFICIAL</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Preciso%20de%20suporte.%20Vou%20descrever%20abaixo%20minha%20d%C3%BAvida%20ou%20o%20problema%20que%20estou%20enfrentando%20no%20site%3A" class="item-menu-lateral">SUPORTE</a>
+            <a href="https://wa.me/5598987261116?text=Ideias%20para%20Adesivos%3A" class="item-menu-lateral">IDEIAS PARA ADESIVOS</a>
+            <a href="sobre.html" class="item-menu-lateral">SOBRE</a>
+        </div>
+        
+        <div class="creditos-menu">
+            Distributed by: <a href="https://www.instagram.com/venancio_adesivos" target="_blank" class="link-creditos">Venâncio Adesivos</a>
+        </div>
+    </div>
+
+    <div id="menu-carrinho" class="menu-carrinho">
+        <div class="topo-menu-carrinho">
+            <span class="titulo-carrinho">Carrinho de compras</span>
+            <i class="bi bi-x icone-fechar-carrinho" id="botao-fechar-carrinho"></i>
+        </div>
+        
+        <div class="conteudo-menu-carrinho">
+            <div id="itens-carrinho-lista" style="width: 100%;"></div>
+
+            <div class="carrinho-vazio" id="carrinho-vazio-msg">
+                <i class="bi bi-basket2"></i>
+                <p>Seu carrinho está vazio.</p>
+            </div>
+        </div>
+        
+        <div class="rodape-menu-carrinho">
+            <div class="linha-total-carrinho">
+                <span class="txt-total">Total:</span>
+                <span class="valor-total" id="valor-total-exibido">R$ 0,00</span>
+            </div>
+            <button class="btn-finalizar-carrinho">FINALIZAR COMPRA</button>
+        </div>
+    </div>
+
+    <div class="topo-preto">
+        <div class="carrossel-container">
+            <div class="carrossel-frases">
+                <div class="frase-item">🚚 ENTREGA PARA TODO BRASIL!</div>
+                <div class="frase-item">⚡ ECONOMIZE 14% PAGANDO VIA PIX!</div>
+                <div class="frase-item">🔒 COMPRA 100% SEGURA</div>
+                <div class="frase-item">🇧🇷 FRETE FIXO PARA TODO O BRASIL | APENAS R$ 28,00</div>
+            </div>
+        </div>
+        
+        <div class="logo-topo">
+            <i class="bi bi-filter-left icone-menu"></i>
+            brtadesivos
+            <i class="bi bi-basket2 icone-cesta"></i>
+        </div>
+    </div>
+
+    <div class="container-botao-filtro">
+        <button id="btn-abrir-filtro" class="btn-largo-filtro">
+            <i class="bi bi-funnel"></i> Filtrar
+        </button>
+    </div>
+
+    <div id="overlay-filtro" class="overlay-filtro"></div>
+
+    <div id="gaveta-filtro" class="gaveta-filtro">
+        <div class="topo-gaveta-filtro">
+            <span class="titulo-gaveta">Filtrar por</span>
+            <i class="bi bi-x icone-fechar-gaveta" id="botao-fechar-filtro"></i>
+        </div>
+        
+        <div class="conteudo-gaveta-filtro">
+            <div class="secao-filtro">
+                <h3>Ordenar</h3>
+                <div class="opcoes-grupo">
+                    <label class="opcao-filtro-item">
+                        <input type="radio" name="ordenacao" value="destaque" checked>
+                        <span class="custom-radio"></span> Destaque
+                    </label>
+                    <label class="opcao-filtro-item">
+                        <input type="radio" name="ordenacao" value="menor-preco">
+                        <span class="custom-radio"></span> Menor preço
+                    </label>
+                    <label class="opcao-filtro-item">
+                        <input type="radio" name="ordenacao" value="maior-preco">
+                        <span class="custom-radio"></span> Maior preço
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="rodape-gaveta-filtro">
+            <button id="btn-aplicar-filtro" class="btn-aplicar-filtro">FILTRAR</button>
+        </div>
+    </div>
+    
+    <div class="container-busca">
+        <div class="campo-busca-wrapper">
+            <i class="bi bi-search icone-busca"></i>
+            <input type="text" id="input-busca" placeholder="Search..." autocomplete="off">
+            <i class="bi bi-x-circle-fill icone-limpar-busca" id="btn-limpar-busca"></i>
+        </div>
+        <span id="erro-busca" class="mensagem-erro-busca">Por favor, digite o que deseja buscar!</span>
+    </div>
+
+    <hr class="divisor-vitrine">
+
+    <h2 class="titulo-categoria-vitrine">Adesivos</h2>
+
+    <main class="container-vitrine">
+        
+        <div id="busca-sem-resultados" class="busca-vazia-aviso">Nenhum produto encontrado 😕</div>
+        
+        <div class="produto-card" data-id="1" data-nome="ADESIVO OFICIAL - BROTA TCHUCA" data-preco="6.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-ofc.png">
+            <a href="brt000001.html?id=1" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-ofc.png" alt="ADESIVO OFICIAL - BROTA TCHUCA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO OFICIAL - BROTA TCHUCA</h2>
+                    <span class="produto-preco">R$ 6,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000001.html?id=1" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+        <div class="produto-card" data-id="2" data-nome="ADESIVO PROIBIDO GORDA FEIA" data-preco="4.90" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-proibido-gorda-feia.png">
+            <a href="brt000002.html?id=2" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-proibido-gorda-feia.png" alt="ADESIVO PROIBIDO GORDA FEIA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO PROIBIDO GORDA FEIA</h2>
+                    <span class="produto-preco">R$ 4,90</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000002.html?id=2" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+        <div class="produto-card" data-id="3" data-nome="ADESIVO - AS DO JOB FAZEM MELHOR" data-preco="8.00" data-cor="branco" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-as-do-job-fazem-melhor.png">
+            <a href="brt000003.html?id=3" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-as-do-job-fazem-melhor.png" alt="ADESIVO - AS DO JOB FAZEM MELHOR">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO - AS DO JOB FAZEM MELHOR</h2>
+                    <span class="produto-preco">R$ 8,00</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000003.html?id=3" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+        <div class="produto-card" data-id="4" data-nome="ADESIVO OFICIAL - RUNE STAR" data-preco="6.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-rune-star.png">
+            <a href="brt000004.html?id=4" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-rune-star.png" alt="ADESIVO OFICIAL - RUNE STAR">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO OFICIAL - RUNE STAR</h2>
+                    <span class="produto-preco">R$ 6,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000004.html?id=4" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+        <div class="produto-card" data-id="5" data-nome="ME DEIXOU PENSATIVO RABUDINHA" data-preco="9.70" data-cor="branco" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-me-deixou-pensativo-rabudinh4.png">
+            <a href="brt000005.html?id=5" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-me-deixou-pensativo-rabudinh4.png" alt="ME DEIXOU PENSATIVO RABUDINHA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ME DEIXOU PENSATIVO RABUDINHA</h2>
+                    <span class="produto-preco">R$ 9,70</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000005.html?id=5" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+        <div class="produto-card" data-id="6" data-nome="SOM AUTOMOTIVO NÃO É CRIME VÃO PRENDER LADRÃO!" data-preco="8.99" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-som-automotivo-nao-e-crime.png">
+            <a href="brt000006.html?id=6" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-som-automotivo-nao-e-crime.png" alt="SOM AUTOMOTIVO NÃO É CRIME VÃO PRENDER LADRÃO!">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">SOM AUTOMOTIVO NÃO É CRIME VÃO PRENDER LA...</h2>
+                    <span class="produto-preco">R$ 8,99</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000006.html?id=6" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="7" data-nome="ADESIVO OFICIAL - CAÇA GORDINHA" data-preco="7.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-gordinha.jpg">
+            <a href="brt000007.html?id=7" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-gordinha.jpg" alt="ADESIVO OFICIAL - CAÇA GORDINHA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO OFICIAL - CAÇA GORDINHA</h2>
+                    <span class="produto-preco">R$ 7,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000007.html?id=7" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="8" data-nome="ADESIVO CAÇA-PEITUDAS - OFICIAL" data-preco="7.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-peitudas.png">
+            <a href="brt000008.html?id=8" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-peitudas.png" alt="ADESIVO CAÇA PEITUDAS - OFICIAL">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO CAÇA PEITUDAS - OFICIAL</h2>
+                    <span class="produto-preco">R$ 7,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000008.html?id=8" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <!-- PRODUTO MULTICOR ADJUSTED -->
+        <div class="produto-card" data-id="9" data-nome="#É US GURI DA BROTA" data-preco="4.40" data-cor="preto branco" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-us-guri-da-brota.png">
+            <a href="brt000009.html?id=9" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-us-guri-da-brota.png" alt="#É US GURI DA BROTA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">#É US GURI DA BROTA</h2>
+                    <span class="produto-preco">R$ 4,40</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000009.html?id=9" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="10" data-nome="CAÇA MÃES SOLTEIRAS" data-preco="7.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-m%C3%A3es-solteiras.png">
+            <a href="brt000010.html?id=10" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-m%C3%A3es-solteiras.png" alt="CAÇA MÃES SOLTEIRAS">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">CAÇA MÃES SOLTEIRAS</h2>
+                    <span class="produto-preco">R$ 7,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000010.html?id=10" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="11" data-nome="ADESIVO BROTA TCHUCA METRALHA" data-preco="4.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-metralha.png">
+            <a href="brt000011.html?id=11" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-metralha.png" alt="ADESIVO BROTA TCHUCA METRALHA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO BROTA TCHUCA METRALHA</h2>
+                    <span class="produto-preco">R$ 4,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000011.html?id=11" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="12" data-nome="ADESIVO BROTA TCHUCA HALLOWEEN" data-preco="4.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-halloween.png">
+            <a href="brt000012.html?id=12" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca-halloween.png" alt="ADESIVO BROTA TCHUCA HALLOWEEN">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO BROTA TCHUCA HALLOWEEN</h2>
+                    <span class="produto-preco">R$ 4,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000012.html?id=12" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <!-- PRODUTO MULTICOR ADJUSTED -->
+        <div class="produto-card" data-id="13" data-nome="MANHÃ / TARDE / NOITE" data-preco="13.99" data-cor="preto branco" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-manh%C3%A3-tarde-noite.png">
+            <a href="brt000013.html?id=13" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-manh%C3%A3-tarde-noite.png" alt="MANHÃ / TARDE / NOITE">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">MANHÃ / TARDE / NOITE</h2>
+                    <span class="produto-preco">R$ 13,99</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000013.html?id=13" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="14" data-nome="ADESIVO BROTA TCHUCA" data-preco="4.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca.png">
+            <a href="brt000014.html?id=14" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-brota-tchuca.png" alt="ADESIVO BROTA TCHUCA">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">ADESIVO BROTA TCHUCA</h2>
+                    <span class="produto-preco">R$ 4,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000014.html?id=14" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="15" data-nome="ADESIVO CAÇA CORNOS" data-preco="5.00" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-cornos.png">
+            <a href="brt000015.html?id=15" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-ca%C3%A7a-cornos.png" alt="ADESIVO CAÇA CORNOS">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">CAÇA CORNOS</h2>
+                    <span class="produto-preco">R$ 5,00</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000015.html?id=15" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="16" data-nome="É POR MÍDIA MESMO, AMOR EU FAÇO EM CASA." data-preco="12.50" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-por-midia-mesmo.png">
+            <a href="brt000016.css?id=16" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-por-midia-mesmo.png" alt="É POR MÍDIA MESMO, AMOR EU FAÇO EM CASA.">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">É POR MÍDIA MESMO, AMOR...</h2>
+                    <span class="produto-preco">R$ 12,50</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000016.html?id=16" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <!-- PRODUTO MULTICOR ADJUSTED -->
+        <div class="produto-card" data-id="17" data-nome="ADESIVO É DENTRO" data-preco="5.50" data-cor="preto branco" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-dentro.png">
+            <a href="brt000017.html?id=17" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-%C3%A9-dentro.png" alt="É DENTRO">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">É DENTRO</h2>
+                    <span class="produto-preco">R$ 8,99</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000017.html?id=17" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+
+        <div class="produto-card" data-id="18" data-nome="ADESIVO -13cm" data-preco="7.90" data-cor="variado" data-foto="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-13cm.png">
+            <a href="brt000018.html?id=18" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                <div class="produto-foto-wrapper">
+                    <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/ads-13cm.png" alt="ADESIVO HOLOGRÁFICO PREMIUM">
+                </div>
+                <div class="produto-info">
+                    <h2 class="produto-nome">-13cm</h2>
+                    <span class="produto-preco">R$ 7,90</span>
+                </div>
+            </a>
+            <div class="produto-info" style="padding-top: 0;">
+                <a href="brt000018.html?id=18" class="btn-adicionar-carrinho" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-basket2"></i> Ver Opções
+                </a>
+            </div>
+        </div>
+        
+    </main>
+
+    <button id="btn-topo" class="btn-voltar-topo" aria-label="Voltar ao topo">
+        <i class="bi bi-arrow-up-circle-fill"></i>
+    </button>
+
+    <script src="home.js"></script>
+</body>
+</html>

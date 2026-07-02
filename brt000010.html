@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CAÇA MÃES SOLTEIRAS| Brota Tchuca Oficial</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="icon" type="image/webp" href="https://4c010466ba.cbaul-cdnwnd.com/1cf6b935d7a8ddd4774af758372afb34/200000013-c7945c7947/CAPA%20BROTA%20TCHUCA%202.0~2.webp?ph=4c010466ba">
+    
+    <link rel="stylesheet" href="brt000010.css">
+</head>
+<body>
+
+    <div id="menu-lateral" class="menu-lateral">
+        <div class="topo-menu-lateral">
+            <i class="bi bi-x icone-fechar" id="botao-fechar-menu"></i>
+        </div>
+        
+        <div class="conteudo-menu-lateral">
+            <a href="home.html" class="item-menu-lateral">INÍCIO</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Tenho%20interesse%20na%20camiseta%20%22Brota%20Tchuca%22" class="item-menu-lateral">CAMISETA</a>
+            <a href="https://wa.me/5598987261116?text=Opa%21%20Tenho%20interesse%20nas%20m%C3%BAsicas%20atualizadas%20%E2%80%94%20Edi%C3%A7%C3%A3o%20de%20Junho." class="item-menu-lateral">REPERTÓRIO</a>
+            <a href="https://chat.whatsapp.com/BGoASDx1FXmJaKVPWAYPkB" class="item-menu-lateral">GRUPO OFICIAL</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Preciso%20de%20suporte.%20Vou%20descrever%20abaixo%20minha%20d%C3%BAvida%20ou%20o%20problema%20que%20estou%20enfrentando%20no%20site%3A" class="item-menu-lateral">SUPORTE</a>
+            <a href="https://wa.me/5598987261116?text=Ideias%20para%20Adesivos%3A" class="item-menu-lateral">IDEIAS PARA ADESIVOS</a>
+            <a href="sobre.html" class="item-menu-lateral">SOBRE</a>
+        </div>
+        
+        <div class="creditos-menu">
+            Distributed by: <a href="https://www.instagram.com/venancio_adesivos" target="_blank" class="link-creditos">Venâncio Adesivos</a>
+        </div>
+    </div>
+
+    <div id="menu-carrinho" class="menu-carrinho">
+        <div class="topo-menu-carrinho">
+            <span class="titulo-carrinho">Carrinho de compras</span>
+            <i class="bi bi-x icone-fechar-carrinho" id="botao-fechar-carrinho"></i>
+        </div>
+        
+        <div class="conteudo-menu-carrinho">
+            <div id="itens-carrinho-lista" style="width: 100%;"></div>
+
+            <div class="carrinho-vazio" id="carrinho-vazio-msg">
+                <i class="bi bi-basket2"></i>
+                <p>Seu carrinho está vazio.</p>
+            </div>
+        </div>
+        
+        <div class="rodape-menu-carrinho">
+            <div class="linha-total-carrinho">
+                <span class="txt-total">Total:</span>
+                <span class="valor-total" id="valor-total-exibido">R$ 0,00</span>
+            </div>
+            <button class="btn-finalizar-carrinho">FINALIZAR COMPRA</button>
+        </div>
+    </div>
+
+    <div class="topo-preto">
+        <div class="carrossel-container">
+            <div class="carrossel-frases">
+                <div class="frase-item">🚚 ENTREGA PARA TODO BRASIL!</div>
+                <div class="frase-item">⚡ ECONOMIZE 14% PAGANDO VIA PIX!</div>
+                <div class="frase-item">🔒 COMPRA 100% SEGURA</div>
+                <div class="frase-item">🇧🇷 FRETE FIXO PARA TODO O BRASIL | APENAS R$ 28,00</div>
+            </div>
+        </div>
+        
+        <div class="logo-topo">
+            <i class="bi bi-filter-left icone-menu"></i>
+            brtadesivos
+            <i class="bi bi-basket2 icone-cesta"></i>
+        </div>
+    </div>
+
+    <!-- 🖼️ IMAGEM DO ADESIVO (1x1 - COLADA NO TOPO PRETO) -->
+    <div class="container-produto-principal">
+        <img src="https://raw.githubusercontent.com/BrotaTchuca-ofc/Brt-images/main/destaque-ca%C3%A7a-maes-solteiras.png" alt="Destaque Caça Mães Solteiras" class="imagem-produto-quadrada">
+    </div>
+
+    <!-- 🏷️ TÍTULO DO PRODUTO -->
+    <div class="container-titulo-produto">
+        <h1 class="titulo-produto">Caça Mães Solteiras</h1>
+    </div>
+
+    <!-- 💰 PREÇO DO PRODUTO -->
+    <div class="container-preco-produto">
+        <span class="preco-produto" id="valor-produto">R$ 7,50</span>
+    </div>
+
+    <!-- 🎨 SELEÇÃO DE CORES (Atualizado com o quadradinho de cor sem texto dentro) -->
+    <div class="container-cores">
+    <p class="label-cor">Cor: <span id="cor-selecionada" style="color: #303030; font-weight: 600;">Variado</span></p>
+    <div class="opcoes-cores">
+        <button class="btn-cor-bloco selecionado" onclick="mudarCor(this)" aria-label="Variado"></button>
+    </div>
+</div>
+    
+    <!-- 📏 SELEÇÃO DE TAMANHOS -->
+    <div class="container-tamanhos">
+        <p class="label-tamanho">Tamanho: <span id="tamanho-selecionado" style="color: #303030; font-weight: 600;">12x12 cm</span></p>
+        <div class="opcoes-tamanhos">
+            <button class="btn-tamanho selecionado" onclick="mudarTamanho(this, '7,50', '12x12 cm')">12x12 cm</button>
+            <button class="btn-tamanho" onclick="mudarTamanho(this, '18,00', '25x25 cm')">25x25 cm</button>
+        </div>
+    </div>
+
+    <div class="container-compra">
+        <div class="tabela-compra">
+            <div class="celula-quantidade">
+                <div class="seletor-quantidade">
+                    <button class="btn-qty" onclick="alterarQuantidade(-1)">-</button>
+                    <input type="number" id="quantidade" value="1" min="1" onchange="validarQuantidade()">
+                    <button class="btn-qty" onclick="alterarQuantidade(1)">+</button>
+                </div>
+            </div>
+            
+            <div class="celula-botao">
+                <button class="btn-comprar" onclick="mostrarToast()">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-descricao">
+        <h2 class="titulo-descricao">Descrição</h2>
+        <p class="texto-descricao">
+            Adesivo Vinil Premium com Corte Especial Leve a identidade da nossa equipe para onde você for! Produzido com impressão digital de alta definição e corte detalhado, nosso adesivo é perfeito para personalizar sua moto, carro, capacete ou até mesmo detalhes da sua casa. Feito para durar: é 100% à prova d'água, resistente ao sol (proteção UV) e não desbota. Alta durabilidade para acompanhar você em qualquer rolê!
+        </p>
+        
+        <!-- 🌟 Bloco de Benefícios com Brilho Verde -->
+        <div class="beneficios-adesivo">
+            <div class="item-beneficio">🇧🇷 Entrega Para Todo Brasil!</div>
+            <div class="item-beneficio">🚚  Frete Fixo Para Todo O Brasil | Apenas R$ 28,00</div>
+            <div class="item-beneficio">🔒 Compra 100% Segura.</div>
+        </div>
+
+        <!-- 🏷️ SEÇÃO DE TAGS -->
+        <div class="container-tags-produto">
+            <span class="tag-link">#Variado</span>
+            <span class="tag-link">#Adesivos</span>
+            <span class="tag-link">#BrotaTchucaOfc</span>
+            <span class="tag-link">#SomAutomotivo</span>
+            <span class="tag-link">#Top01</span>
+            <span class="tag-link">#BRT000010</span>
+        </div>
+        
+        <!-- Linha fina -->
+        <hr class="linha-divisoria">
+        <!-- Frase dos direitos autorais -->
+        <p class="direitos-autorais">Brota Tchuca Oficial © • All rights reserved.</p>
+    </div>
+
+    <button id="btn-topo" class="btn-voltar-topo" aria-label="Voltar ao topo">
+        <i class="bi bi-arrow-up-circle-fill"></i>
+    </button>
+
+    <div id="toast-sucesso" class="toast-popup">Adesivo adicionado ao carrinho!</div>
+
+    <script src="brt000010.js"></script>
+</body>
+</html>

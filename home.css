@@ -1,0 +1,939 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+    /* Bloqueia a seleção de texto e imagens na Home também */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+ */
+    user-select: none;         /* Padrão */
+    
+    /* Impede o menu de salvar imagem no celular ao segurar o dedo */
+    -webkit-touch-callout: none;
+}
+
+body {
+    background-color: #FFFFFF; /* Deixando o fundo padrão branco para começarmos a loja */
+}
+
+/* Trava o scroll do fundo da página quando um menu está aberto */
+body.travar-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Quadrado/Barra preta no topo */
+.topo-preto {
+    width: 100%;
+    height: 150px;/* Mantendo sua altura */
+    background-color: #000000;
+    
+    /* Arredonda apenas os cantos de baixo */
+    border-bottom-left-radius: 15px;  /* Canto inferior esquerdo */
+    border-bottom-right-radius: 15px; /* Canto inferior direito */
+}
+
+/* Container do Carrossel (Ajustado para subir as frases) */
+.carrossel-container {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 3px;
+}
+
+/* Linha que segura todas as frases lado a lado */
+.carrossel-frases {
+    display: flex;
+    width: 300%;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Cada frase individual */
+.frase-item {
+    width: 100%;
+    flex-shrink: 0;
+    text-align: center;
+    color: #2ECC71;
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 0 10px;
+}
+
+/* Estilo da Logo no Topo */
+.logo-topo {
+    position: relative; /* Adicionado para permitir o alinhamento do ícone na esquerda */
+    text-align: center;
+    color: #B11F1F; /* Tom de vermelho vinho destacado para fundo preto */
+    font-size: 1.9rem; /* Tamanho grande e imponente para a logo */
+    font-weight: 700; /* Fonte grossa */
+    letter-spacing: -1.3px; /* Deixa as letras sutilmente mais juntas, estilo logo mesmo */
+    margin-top: 25px; /* Afasta a logo para baixo do carrossel de frases */
+}
+
+/* Novo: Estilo do Ícone de Menu na esquerda */
+.icone-menu {
+    position: absolute;
+    left: 13px; /* Distância da borda esquerda da tela */
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza o ícone verticalmente em relação à logo */
+    color: #FFFFFF; /* Ícone branco para destacar no fundo preto */
+    font-size: 2.0rem; /* Tamanho proporcional para o ícone de menu */
+    cursor: pointer;
+}
+
+/* Novo: Estilo do Ícone de Cesta na direita */
+.icone-cesta {
+    position: absolute;
+    right: 13px; /* Mesma distância da borda que o menu, só que na direita */
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza o ícone verticalmente em relação à logo */
+    color: #FFFFFF; /* Ícone branco para destacar no fundo preto */
+    font-size: 1.6rem; /* Mesmo tamanho do ícone de menu */
+    cursor: pointer;
+}
+
+/* Menu Lateral */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #F4F4F4; /* Cor de fundo pedida */
+    z-index: 9999; /* Garante que fica por cima de tudo no site */
+    transform: translateX(-100%); /* Começa escondido na esquerda fora da tela */
+    transition: transform 0.4s ease-in-out; /* Efeito suave para abrir e fechar */
+}
+
+/* Classe que o JavaScript vai aplicar para abrir o menu */
+.menu-lateral.ativo {
+    transform: translateX(0); /* Desliza para dentro da tela */
+}
+
+/* Topo do Menu Lateral (Onde fica o X - Agora com fundo branco) */
+.topo-menu-lateral {
+    position: relative; /* Serve de guia para o posicionamento do X */
+    width: 100%;
+    height: 50px; /* Altura ideal para a faixa branca do topo */
+    background-color: #FFFFFF; /* Deixa o fundo dessa linha totalmente branco */
+}
+
+/* Estilo do Ícone de Fechar (X) */
+.icone-fechar {
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente na faixa branca */
+    transform: translateY(-50%); /* Ajuste fine da centralização vertical */
+    right: 8px; /* Mantém colado na direita como você deixou */
+    font-size: 2.1rem; /* Mantido o seu tamanho */
+    color: #000000; /* Cor preta para destacar no fundo branco */
+    cursor: pointer;
+}
+
+/* Container que segura os links do menu */
+.conteudo-menu-lateral {
+    width: 100%;
+    padding: 7px 0; /* Tiramos o padding lateral daqui para a linha poder encostar nas bordas */
+    display: flex;
+    flex-direction: column; /* Organiza os itens um abaixo do outro */
+}
+
+/* Estilo do link INÍCIO */
+.item-menu-lateral {
+    text-decoration: none; /* Remove aquele sublinhado azul padrão de link */
+    color: #303030;        /* Tom grafite escuro, mais elegante and confortável */
+    font-size: 0.9rem;     /* Tamanho ideal para leitura no celular */
+    font-weight: 800;      /* Fonte mais grossinha e imponente */
+    letter-spacing: 0.5px; /* Sutil espaçamento entre as letras */
+    padding: 15px 17px;    /* 15px em cima/baixo para espaçar e os seus 17px na esquerda para o texto não colar na parede */
+    width: 100%;           /* Faz o item ocupar toda a largura para a linha ir de ponta a ponta */
+    
+    /* A linha fina que você pediu: */
+    border-bottom: 1px solid #E0E0E0; /* Linha fina e discreta de um lado para o outro */
+}
+
+/* Texto de créditos no rodapé do menu lateral */
+.creditos-menu {
+    position: absolute;
+    bottom: 370px;       /* Mantido sua distância perfeita */
+    width: 100%;        
+    text-align: center; 
+    color: #B9B9B9;     /* Mantido sua cor */
+    font-size: 0.7rem;  
+    font-weight: 500;   
+    letter-spacing: 0.8px;
+}
+
+/* Estilo específico para o link dentro do texto */
+.link-creditos {
+    text-decoration: none; /* Remove o sublinhado azul de link */
+    color: #B9B9B9;/* Deixa na mesma cor exata do texto ao redor */
+    font-weight: 700;/* Um pouquinho mais grossinho para dar um charme discreto */
+}
+
+/* ---- 🛒 MENU DO CARRINHO 🛒 ---- */
+.menu-carrinho {
+    position: fixed;
+    top: 0;
+    right: 0; /* Alinha na direita */
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* Garante o tamanho exato da área útil em celulares modernos */
+    background-color: #F4F4F4;
+    z-index: 9999;
+    transform: translateX(100%); /* Começa escondido na DIREITA fora da tela */
+    transition: transform 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Organiza Topo, Conteúdo e Rodapé em pilha perfeita */
+}
+
+/* Classe que o JavaScript aplica para abrir o carrinho */
+.menu-carrinho.ativo {
+    transform: translateX(0);
+}
+
+/* Topo do Carrinho (Faixa Branca) */
+.topo-menu-carrinho {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaça o texto na esquerda e o X na direita */
+    padding: 0 17px; /* Alinhado com o recuo dos seus links */
+    flex-shrink: 0; /* Impede o topo de amassar */
+}
+
+/* Texto Carrinho de Compras */
+.titulo-carrinho {
+    color: #303030; /* Seu tom de preto elegante */
+    font-size: 1.0rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Ícone de Fechar (X) do Carrinho */
+.icone-fechar-carrinho {
+    font-size: 2.1rem;
+    color: #000000;
+    cursor: pointer;
+}
+
+/* Estilo do Estado Vazio */
+.conteudo-menu-carrinho {
+    width: 100%;
+    flex: 1; /* Faz o meio crescer dinamicamente e empurrar o rodapé para o fim da tela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px; /* Reduzido o padding fixo para acomodar a lista no topo */
+    overflow-y: auto;  /* Permite rolar os produtos adicionados caso passe da tela */
+}
+
+.carrinho-vazio {
+    text-align: center;
+    color: #B9B9B9; /* Seu tom de cinza discreto */
+    margin-top: 80px;
+}
+
+.carrinho-vazio i {
+    font-size: 3rem; /* Ícone da cesta grande */
+    display: block;
+    margin-bottom: 10px;
+}
+
+.carrinho-vazio p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* RODAPÉ DO CARRINHO FIXADO (SEM BRECHAS NO FUNDO) */
+.rodape-menu-carrinho {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 15px 17px 25px 17px; /* 25px embaixo para cobrir a barra do sistema do celular com estilo */
+    border-top: 1px solid #E0E0E0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil para dar acabamento */
+    flex-shrink: 0; /* Impede o rodapé de sumir ou achatar */
+}
+
+/* Linha que mostra o texto Total e o valor R$ */
+.linha-total-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.txt-total {
+    color: #303030;
+    font-size: 1.0rem;
+    font-weight: 800;
+}
+
+.valor-total {
+    color: #303030;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+/* Botão Verde de Finalizar Compra com Animação */
+.btn-finalizar-carrinho {
+    width: 100%;
+    background-color: #2ECC71; /* Verde marcante */
+    color: #FFFFFF;
+    border: 2px solid #2ECC71; /* Adicionada a borda padrão */
+    padding: 15px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+    transition: all 0.3s ease; /* Transição suave para todos os efeitos */
+}
+
+/* Efeito ao passar o mouse (ou segurar o dedo no celular) */
+.btn-finalizar-carrinho:hover,
+.btn-finalizar-carrinho:active {
+    background-color: transparent; /* Fundo fica transparente */
+    color: #2ECC71;               /* O texto fica verde */
+    box-shadow: none;/* Remove a sombra para dar o efeito vazado */
+}
+
+/* ---- 🔍 BOTÃO LARGO DE FILTRO 🔍 ---- */
+.container-botao-filtro {
+    width: 100%;
+    padding: 20px 17px 10px 17px; /* Alinhado com as laterais do site */
+}
+
+.btn-largo-filtro {
+    width: 100%;
+    background-color: #F4F4F4;
+    color: #303030;
+    border: 1px solid #E0E0E0;
+    padding: 12px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre o ícone do funil e o texto */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+}
+
+.btn-largo-filtro i {
+    font-size: 1.1rem;
+}
+
+/* Efeito clique no botão Filtro */
+.btn-largo-filtro:active {
+    background-color: #F4F4F4;
+    transform: scale(0.98);
+}
+
+/* ---- 🎛️ GAVETA DE FILTROS (BOTTOM SHEET) 🎛️ ---- */
+/* Fundo escuro suave com transição de opacidade */
+.overlay-filtro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10000; /* Abaixo da gaveta, acima do site */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.overlay-filtro.ativo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Corpo da Gaveta que sobe por baixo */
+.gaveta-filtro {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh; /* Ocupa no máximo 80% da altura da tela */
+    background-color: #FFFFFF;
+    border-top-left-radius: 20px;  /* Cantos arredondados lindos no topo */
+    border-top-right-radius: 20px;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%); /* Começa totalmente escondido abaixo da tela */
+    transition: transform 0.35s ease-out;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Força a ativação vinda do JS */
+.gaveta-filtro.ativo {
+    transform: translateY(0);
+}
+
+/* Topo da Gaveta */
+.topo-gaveta-filtro {
+    width: 100%;
+    height: 55px;
+    padding: 0 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.titulo-gaveta {
+    color: #303030;
+    font-size: 1.0rem;
+    font-weight: 800;
+}
+
+.icone-fechar-gaveta {
+    font-size: 2.1rem;
+    color: #000000;
+    cursor: pointer;
+}
+
+/* Conteúdo interno com rolagem se necessário */
+.conteudo-gaveta-filtro {
+    padding: 20px 17px;
+    overflow-y: auto;
+}
+
+.secao-filtro {
+    margin-bottom: 25px;
+}
+
+.secao-filtro h3 {
+    font-size: 0.9rem;
+    color: #303030;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.opcoes-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Customização dos botões seletores (Fica muito mais profissional) */
+.opcao-filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #303030;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Esconde o rádio padrão do navegador */
+.opcao-filtro-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Cria a bolinha bonita customizada com animações elásticas */
+.custom-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D0D0D0;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animação de encolhimento tátil ao pressionar */
+.opcao-filtro-item:active .custom-radio {
+    transform: scale(0.85);
+}
+
+/* Estilo quando está selecionado (Fica verde) */
+.opcao-filtro-item input:checked ~ .custom-radio {
+    border-color: #2ECC71;
+    background-color: #2ECC71;
+    transform: scale(1.05); /* Mini salto elástico */
+    animation: pulsarSelecao 0.3s ease-out; /* Dispara a onda */
+}
+
+/* Miolo branco interno da bolinha selecionada */
+.opcao-filtro-item input:checked ~ .custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+/* Destaca levemente o texto da opção selecionada */
+.opcao-filtro-item input:checked ~ span:not(.custom-radio) {
+    color: #000000;
+}
+
+/* Rodapé fixo da Gaveta */
+.rodape-gaveta-filtro {
+    padding: 15px 17px 25px 17px;
+    border-top: 1px solid #E0E0E0;
+    background-color: #FFFFFF;
+}
+
+/* Botão de Filtrar final Verde */
+.btn-aplicar-filter, .btn-aplicar-filtro {
+    width: 100%;
+    background-color: #2ECC71;
+    color: #FFFFFF;
+    border: 2px solid #2ECC71;
+    padding: 14px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-aplicar-filtro:active {
+    background-color: transparent;
+    color: #2ECC71;
+    box-shadow: none;
+}
+
+/* ---- 🎥 KEYFRAMES DA ANIMAÇÃO DE PULSO 🎥 ---- */
+@keyframes pulsarSelecao {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); /* Onda em expansão sutil */
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+    }
+}
+
+/* ---- 🔍 CAMPO DE BUSCA ORIGINAL 🔍 ---- */
+.container-busca {
+    width: 100%;
+    padding: 5px 17px 15px 17px; /* Margem ajustada para não colar no filtro */
+}
+
+.campo-busca-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Ícone de Lupa posicionado fixo na esquerda do input */
+.icone-busca {
+    position: absolute;
+    left: 15px;
+    color: #A0A0A0; /* Tom cinza suave para a lupa */
+    font-size: 1.05rem;
+    pointer-events: none; /* Garante que o clique passe direto para o input */
+}
+
+/* O input em si, com fundo cinza igual ao botão */
+.campo-busca-wrapper input {
+    width: 100%;
+    background-color: #F4F4F4; /* Mesmo padrão cinza do botão filtrar */
+    color: #303030;
+    border: 1px solid #E0E0E0;
+    padding: 12px 42px 12px 42px; /* Aumentado o lado direito para 42px fixos por conta do X de limpar */
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+/* Efeito ao clicar na barra para digitar (Foco) */
+.campo-busca-wrapper input:focus {
+    background-color: #FFFFFF; /* Fundo clareia para dar contraste */
+    border-color: #2ECC71;     /* Ganha uma borda verde sutil */
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.15); /* Brilho verde suave ao redor */
+}
+
+/* Customização do texto de exemplo (Placeholder) */
+.campo-busca-wrapper input::placeholder {
+    color: #A0A0A0;
+    font-weight: 500;
+}
+
+/* ---- 🛠️ NOVAS ADIÇÕES (BOTÃO X E ERRO SEM QUEBRAR O DESIGN) 🛠️ ---- */
+.icone-limpar-busca {
+    position: absolute;
+    right: 15px;
+    color: #A0A0A0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: none; /* Inicia oculto */
+    transition: color 0.2s ease;
+}
+
+.icone-limpar-busca:active {
+    color: #303030;
+}
+
+.mensagem-erro-busca {
+    display: none; /* Inicia oculto */
+    color: #B11F1F; /* Tom vermelho vinho idêntico à sua logo */
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-top: 6px;
+    padding-left: 5px;
+}
+
+/* ─── 📏 ESTILO DA LINHA DIVISÓRIA 📏 ─── */
+.divisor-vitrine {
+    border: 0;
+    border-top: 1px solid #E0E0E0; /* Mesma cor suave das outras linhas do site */
+    margin: 5px 17px 20px 17px;   /* Mantém o recuo padrão de 17px nas laterais */
+}
+
+/* ─── 🛍️ ESTILO DA VITRINE (GRID EM 2 COLUNAS) 🛍️ ─── */
+.container-vitrine {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Divide a tela exatamente em 2 colunas iguais */
+    gap: 15px;                             /* Espaçamento perfeito entre os cards */
+    padding: 0 17px 40px 17px;             /* 17px nas laterais e margem confortável abaixo */
+    background-color: #FFFFFF;
+}
+
+/* Estrutura do Card do Produto */
+.produto-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+/* Caixa que guarda a foto (Mantém proporção quadrada perfeita e bordas arredondadas) */
+.produto-foto-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Força o container a ser sempre quadrado */
+    background-color: #F4F4F4; /* Fundo cinza suave caso a imagem demore a carregar */
+    border-radius: 12px;       /* Cantos arredondados nos produtos */
+    overflow: hidden;
+    border: 1px solid #EAEAEA;
+    margin-bottom: 10px;
+}
+
+.produto-foto-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher o quadrado sem distorcer */
+}
+
+/* Bloco de textos abaixo da imagem */
+.produto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Nome do Produto */
+.produto-nome {
+    font-size: 0.78rem;  /* Tamanho ideal para não quebrar muitas linhas no mobile */
+    color: #303030;      /* Seu cinza grafite elegante */
+    font-weight: 600;    /* Semipesada para leitura limpa */
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita o título a no máximo 2 linhas (evita desalinhamento) */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Preço do Produto */
+.produto-preco {
+    font-size: 0.95rem;
+    color: #000000;      /* Preço em destaque preto total */
+    font-weight: 800;    /* Bem negrito */
+}
+
+/* ─── 🛒 BOTÃO ADICIONAR AO CARRINHO (VITRINE) 🛒 ─── */
+.btn-adicionar-carrinho {
+    width: 100%;
+    background-color: #000000; /* Fundo preto combinando com o topo do site */
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 0;            /* Altura compacta ideal para telas pequenas */
+    font-size: 0.78rem;        /* Fonte legível acompanhando o nome do produto */
+    font-weight: 700;
+    border-radius: 6px;        /* Bordas ligeiramente arredondadas */
+    margin-top: 6px;           /* Afasta um pouquinho do preço */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;                  /* Espaço entre a cestinha e a palavra Adicionar */
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+/* Efeito de clique no celular (Dá um retorno tátil pro cliente saber que clicou) */
+.btn-adicionar-carrinho:active {
+    background-color: #303030;  /* Escurece sutilmente */
+    transform: scale(0.96);     /* Efeito de encolhimento elástico */
+}
+
+.btn-adicionar-carrinho i {
+    font-size: 0.85rem;         /* Ícone de cesta ligeiramente maior que o texto */
+}
+
+/* ==========================================================================
+   📦 ESTILO AJUSTADO PARA OS ITENS REAIS DO CARRINHO (LARGURA REDUZIDA)
+   ========================================================================== */
+.carrinho-item-linha {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #EAEAEA;
+    gap: 12px;
+    
+    /* MODIFICAÇÃO AQUI: Diminuído para 90% e centralizado automaticamente */
+    width: 90%;
+    margin: 0 auto 12px auto;
+}
+
+.carrinho-item-img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #F4F4F4;
+}
+
+.carrinho-item-infos {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.carrinho-item-titulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #303030;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+
+.carrinho-item-subtotal {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #000000;
+}
+
+.carrinho-item-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.carrinho-item-qtd-txt {
+    font-size: 0.72rem;
+    color: #A0A0A0;
+    font-weight: 600;
+}
+
+.btn-excluir-do-carrinho {
+    background: none;
+    border: none;
+    color: #B11F1F;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+/* ==========================================================================
+   BOTÃO VOLTAR AO TOPO (ATUALIZADO)
+   ========================================================================== */
+.btn-voltar-topo {
+    position: fixed;
+    bottom: 45px;       /* Mais afastado do fundo da tela */
+    right: 35px;        /* Mais afastado da lateral da tela */
+    background: none;
+    border: none;       /* Remove bordas do botão */
+    padding: 0;
+    cursor: pointer;
+    z-index: 999;
+    
+    /* Estados iniciais para o efeito suave (escondido) */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.7); /* Começa levemente menor */
+    
+    /* Transição suave para opacidade, visibilidade e tamanho ao mesmo tempo */
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+
+/* Tamanho e cor do ícone */
+.btn-voltar-topo i {
+    font-size: 50px;    /* Deixou o ícone maiorzinho e imponente */
+    color: #FFFFFF;     /* Cor preta principal */
+    /* Cria um contorno branco suave atrás do ícone para dar destaque se passar por cima de fundo escuro */
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3)); 
+    display: block;
+}
+
+/* Quando o JS ativar a classe, ele aparece de forma suave expandindo */
+.btn-voltar-topo.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1); /* Volta ao tamanho normal suavemente */
+}
+
+/* Efeito rápido ao clicar na tela */
+.btn-voltar-topo:active {
+    transform: scale(0.9);
+}
+
+/* ─── TITULO DA CATEGORIA ACIMA DOS PRODUTOS ─── */
+.titulo-categoria-vitrine {
+    font-size: 1.3rem;        /* Tamanho elegante para o título */
+    color: #303030;           /* O mesmo cinza grafite padrão que você usa no site */
+    font-weight: 800;         /* Fonte bem grossa e imponente */
+    letter-spacing: 0.5px;    /* Sutil espaçamento entre as letras */
+    padding: 0 17px;          /* Mantém o recuo padrão de 17px alinhado com o site */
+    margin-bottom: 15px;      /* Afasta o texto um pouco dos produtos abaixo */
+    text-align: left;         /* Garante o alinhamento totalmente à esquerda */
+}
+
+/* ---- 🔔 POP-UP DE PRODUTO ADICIONADO (TOAST) - ATUALIZADO 🔔 ---- */
+.toast-notificacao {
+    position: fixed;
+    top: -100px; /* Começa fora da tela (no topo) */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza perfeitamente na tela */
+    width: 90%;
+    max-width: 350px; /* Não fica gigante no desktop */
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid #EAEAEA;
+    
+    /* MODIFICAÇÃO AQUI: z-index alterado para 9998 para ficar ATRÁS dos menus (que são 9999) */
+    z-index: 9998; 
+    
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    /* Transição suave para quando o JS mudar o 'top' e a 'opacity' */
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none; /* Evita que o usuário clique nele sem querer enquanto some */
+}
+
+/* Classe ativa que o JS vai colocar para fazer o pop-up aparecer */
+.toast-notificacao.mostrar {
+    top: 20px; /* Desce suavemente para 20px do topo da tela */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Estrutura interna do Pop-up (Foto lado a lado com as Infos) */
+.toast-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toast-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+}
+
+.toast-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.toast-nome {
+    font-size: 0.78rem;
+    color: #303030;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limita a uma linha para ficar compacto */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.toast-preco {
+    font-size: 0.85rem;
+    color: #000000;
+    font-weight: 800;
+}
+
+/* Frase de sucesso na parte inferior do Pop-up */
+.toast-frase-sucesso {
+    font-size: 0.72rem;
+    color: #2ECC71; /* Seu verde padrão */
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #F4F4F4;
+    padding-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+/* ---- 🔍 AVISO DE BUSCA SEM RESULTADOS 🔍 ---- */
+.busca-vazia-aviso {
+    display: none; /* Começa escondido */
+    grid-column: span 2; /* Ocupa as duas colunas da vitrine para centralizar */
+    text-align: center;
+    color: #B9B9B9; /* Seu cinza discreto padrão */
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 40px 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transição suave de opacidade */
+}
+
+/* Classe que o JS vai colocar para mostrar o aviso de forma suave */
+.busca-vazia-aviso.visivel {
+    display: block;
+    opacity: 1;
+}

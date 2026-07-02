@@ -1,0 +1,419 @@
+/* ———— 🌍 CONFIGURAÇÕES GERAIS DO SITE ———— */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+    /* Bloqueia a seleção de texto e imagens */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Impede o menu de salvar imagem no celular ao segurar o dedo */
+    -webkit-touch-callout: none;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+/* Trava o scroll do fundo da página quando um menu está aberto */
+body.travar-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ---- 🖤 CABEÇALHO (TOPO PRETO) ---- */
+.topo-preto {
+    width: 100%;
+    height: 150px;
+    background-color: #000000;
+    
+    /* Arredonda apenas os cantos de baixo */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    /* Centraliza a logo verticalmente e horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-topo {
+    position: relative;
+    text-align: center;
+    color: #B11F1F;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -1.3px;
+    width: 100%;
+}
+
+.icone-menu {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFFFFF;
+    font-size: 2.0rem;
+    cursor: pointer;
+}
+
+/* ---- 📱 MENU LATERAL ---- */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #F4F4F4;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.menu-lateral.ativo {
+    transform: translateX(0);
+}
+
+.topo-menu-lateral {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+}
+
+.icone-fechar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 8px;
+    font-size: 2.1rem;
+    color: #000000;
+    cursor: pointer;
+}
+
+.conteudo-menu-lateral {
+    width: 100%;
+    padding: 7px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-menu-lateral {
+    text-decoration: none;
+    color: #303030;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 15px 17px;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.creditos-menu {
+    position: absolute;
+    bottom: 370px;
+    width: 100%;
+    text-align: center;
+    color: #B9B9B9;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+}
+
+.link-creditos {
+    text-decoration: none;
+    color: #B9B9B9;
+    font-weight: 700;
+}
+
+/* ---- 👤 ÁREA DE DESTAQUE SUPERIOR (FOTO + EMOJIS ALEATÓRIOS) ---- */
+.area-superior-sobre {
+    position: relative;
+    width: 100%;
+    min-height: 260px; /* Altura garantida para todos os emojis */
+    background-color: #FFFFFF;
+    overflow: hidden; /* Evita que os emojis criem barras de rolagem estranhas */
+}
+
+.container-perfil {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Faz o nome ficar abaixo da foto */
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    position: relative;
+    z-index: 3; /* Fica acima do degradê e dos emojis */
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #212121; /* Sua cor escura escolhida */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.nome-perfil {
+    color: #212121;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-top: 30px; /* Cria o espaçamento abaixo da foto */
+    letter-spacing: 0.5px;
+}
+
+/* ———— 🎈 SISTEMA DE EMOJIS ESPALHADOS FLUTUANTES ———— */
+.emoji-aleatorio {
+    position: absolute;
+    font-size: 1.1rem; /* Tamanho menor e elegante */
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Posições na tela (Esquerda Superior/Meio) - Corrigido para não embolar no canto */
+.p1  { top: 20px;  left: 10%; animation: flutuar-leve 3.0s ease-in-out infinite; animation-delay: 0.2s; }
+.p2  { top: 55px;  left: 24%; animation: flutuar-leve 3.4s ease-in-out infinite; animation-delay: 0.5s; }
+.p3  { top: 100px; left: 10%; animation: flutuar-leve 2.8s ease-in-out infinite; animation-delay: 0.1s; }
+.p4  { top: 165px; left: 26%; animation: flutuar-leve 3.2s ease-in-out infinite; animation-delay: 0.7s; }
+
+/* Posições na tela (Direita Superior/Meio) */
+.p5  { top: 20px;  right: 12%; animation: flutuar-leve 2.6s ease-in-out infinite; animation-delay: 0s;   }
+.p6  { top: 65px;  right: 25%; animation: flutuar-leve 3.5s ease-in-out infinite; animation-delay: 0.4s; }
+.p7  { top: 115px; right: 9%;  animation: flutuar-leve 2.9s ease-in-out infinite; animation-delay: 0.8s; }
+.p8  { top: 155px; right: 23%; animation: flutuar-leve 3.1s ease-in-out infinite; animation-delay: 0.3s; }
+
+/* Posições na tela (Centro/Atrás) */
+.p9  { top: 10px;  left: 45%; animation: flutuar-leve 3.3s ease-in-out infinite; animation-delay: 0.6s; }
+.p10 { top: 25px;  left: 55%; animation: flutuar-leve 2.7s ease-in-out infinite; animation-delay: 0.9s; }
+.p11 { top: 200px; left: 42%; animation: flutuar-leve 3.1s ease-in-out infinite; animation-delay: 0.4s; }
+.p12 { top: 210px; right: 40%; animation: flutuar-leve 3.6s ease-in-out infinite; animation-delay: 0.1s; }
+
+/* Posições na tela (Espaço inferior) */
+.p13 { 
+    top: 200px; 
+    left: 4%; /* Afastado ligeiramente do canto extremo */
+    animation: flutuar-leve 3.3s ease-in-out infinite; 
+    animation-delay: 0.3s; 
+} 
+
+.p14 { 
+    top: 225px; 
+    left: 14%; 
+    animation: flutuar-leve 2.9s ease-in-out infinite; 
+    animation-delay: 0.8s; 
+} 
+
+.p15 { 
+    top: 205px; 
+    right: 5%; 
+    animation: flutuar-leve 3.1s ease-in-out infinite; 
+    animation-delay: 0.5s; 
+} 
+
+.p16 { 
+    top: 230px; 
+    right: 15%; 
+    animation: flutuar-leve 3.4s ease-in-out infinite; 
+    animation-delay: 0.1s; 
+}
+
+/* Animação suave para subir e descer */
+@keyframes flutuar-leve {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ---- 🌤️ CAMADA DE DEGRADÊ CONFORME OS EMOJIS DESCEM ---- */
+.degrade-borda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px; /* Altura do efeito de sumiço */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+    z-index: 2; /* Ajustado para ficar abaixo da foto e acima dos emojis (z-index: 1) */
+    pointer-events: none;
+}
+
+.wrapper-foto {
+    position: relative;
+    display: inline-block;
+    z-index: 3; /* Garante que todo o conjunto da foto e status fique acima do degradê */
+}
+
+.status-ativo {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #212121; /* Fundo escuro para dar contraste com a foto e o fundo */
+    color: #FFFFFF;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    z-index: 4; /* Fica por cima da foto */
+}
+
+.bolinha-verde {
+    width: 8px;
+    height: 8px;
+    background-color: #00FF66; /* Verde bem vivo */
+    border-radius: 50%;
+    animation: pulsar-suave 2.5s ease-in-out infinite;
+}
+
+/* Animação que faz a bolinha quase apagar e acender devagarinho */
+@keyframes pulsar-suave {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.92);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 0 8px #00FF66;
+    }
+    100% {
+        opacity: 0.2;
+        transform: scale(0.92);
+    }
+}
+
+/* ---- 📝 SEÇÃO DE CONTEÚDO & CARD FLUTUANTE ---- */
+.conteudo-sobre {
+    margin-top: 35px; /* Empurra o card para baixo, desgrudando do nome */
+    padding: 0 20px 40px 20px;
+    background-color: #FFFFFF; 
+    display: flex;
+    flex-direction: column; /* Organiza o card e o carrossel em coluna */
+    align-items: center;    /* Centraliza os dois horizontalmente */
+    justify-content: center;
+}
+
+.card-biografia {
+    background: #F9F9F9; /* Fundo cinza bem clarinho/off-white */
+    border: 1px solid #EEEEEE;
+    border-radius: 16px;
+    padding: 25px 20px;
+    max-width: 450px; /* Largura ideal para telas de celular */
+    width: 100%;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.03); /* Sombra super leve */
+}
+
+/* Estilo Letra Capitular */
+.texto-biografia {
+    color: #4A4A4A;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.letra-capitular {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #212121; /* Deixando a letra capitular em preto também */
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Linha divisória interna do Card */
+.divisor-card {
+    border: 0;
+    height: 1px;
+    background: #EAEAEA;
+    margin: 20px 0;
+}
+
+/* Lista de Tópicos com Ícones */
+.lista-topicos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lista-topicos li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.icone-topico {
+    color: #212121; /* Mudado de vermelho para o preto padrão do site */
+    font-size: 1.1rem;
+    margin-top: 2px;
+    flex-shrink: 0; /* Impede o ícone de amassar se o texto for longo */
+}
+
+.lista-topicos span {
+    color: #333333;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ---- 🏎️ CARROSSEL DE PARCEIROS INFINITO ---- */
+.carrossel-parceiros {
+    width: 100%;
+    max-width: 450px; /* Alinhado exatamente com a largura do card */
+    overflow: hidden; /* Corta o texto sobressalente nas laterais */
+    margin-top: 26px; /* Distância ideal abaixo do card */
+    padding: 15px 0;
+    position: relative;
+    display: flex;
+
+    /* 🌟 MÁSCARA DE DEGRADÊ: Cria o efeito de sumiço suave nas duas laterais */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* O trilho invisível que segura os spans e faz o movimento contínuo */
+.trilho-carrossel {
+    display: flex;
+    white-space: nowrap;
+    width: max-content; /* Garante que o trilho tenha o tamanho exato do texto */
+    animation: rolar-parceiros 30s linear infinite; 
+}
+
+/* Estilização dos parceiros (Fonte maior e cor mais clara) */
+.trilho-carrossel span {
+    font-size: 1.30rem; 
+    font-weight: 700;   
+    color: #D3D3D3;     
+    text-transform: lowercase; 
+    letter-spacing: 0.5px;
+    padding: 0 15px;    
+}
+
+/* Animação corrigida para loop perfeito sem trancos */
+@keyframes rolar-parceiros {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move metade exata do conteúdo para o loop perfeito */
+    }
+}

@@ -1,0 +1,432 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+    /* Bloqueia a seleção de texto e imagens por completo */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+body {
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+    touch-action: pan-y;
+}
+
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+/* ─── ESTRUTURA DO TOPO PRETO MANTIDA (120px) ─── */
+.topo-preto {
+    width: 100%;
+    height: 120px;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.logo-topo {
+    text-align: center;
+    color: #B11F1F;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -1.3px;
+    line-height: 1;
+}
+
+main {
+    padding: 20px;
+}
+
+/* ─── DESIGN DA BARRA DE PROGRESSO (STEPPER) ─── */
+.container-etapas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Permite que o componente use todo o comprimento disponível da tela */
+    margin: 10px auto 35px auto; /* Centraliza na tela e dá espaço para o conteúdo abaixo */
+    padding: 0 0px; /* Deixa um espaço mínimo nas bordas para as bolinhas não colarem no vidro do celular */
+}
+
+/* Linha conectora ao fundo (Esticada de ponta a ponta) */
+.linha-conectora {
+    position: absolute;
+    top: 18px; /* Mantém centralizado na altura das bolinhas */
+    left: 18px; /* Ajustado para esticar e começar bem atrás da primeira bolinha nas pontas */
+    right: 18px; /* Ajustado para esticar e terminar bem atrás da última bolinha nas pontas */
+    height: 3px; /* Espessura ideal e marcante para a linha */
+    background-color: #EAEAEA;
+    z-index: 1;
+}
+
+/* Item individual da etapa */
+.etapa-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    flex: 1;
+}
+
+/* Círculo com o ícone */
+.etapa-circulo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+    border: 2px solid #EAEAEA;
+    color: #A0A0A0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+/* Texto explicativo abaixo da bolinha */
+.etapa-texto {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #A0A0A0;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+/* ─── ESTADO ATIVO ─── */
+.etapa-item.ativa .etapa-circulo {
+    background-color: #000000;
+    border-color: #000000;
+    color: #2ECC71; /* Verde oficial da loja */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.etapa-item.ativa .etapa-texto {
+    color: #000000;
+    font-weight: 700;
+}
+
+/* ─── TÍTULO DA ETAPA ELEGANTE ─── */
+.titulo-etapa {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1A1A1A; /* Um preto suave, mais sofisticado */
+    margin: 10px auto 25px auto;
+}
+
+/* ─── LISTA E CARDS DE PRODUTOS NO RESUMO ─── */
+.lista-produtos-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espaço entre um produto e outro, caso haja mais de um */
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* Caixa do card do produto simplificada (Sem Foto) */
+.produto-resumo-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F9F9F9;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 14px 18px;
+}
+
+/* Área dos textos */
+.produto-resumo-infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.produto-resumo-nome {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #2D2D2D;
+    line-height: 1.3;
+}
+
+.produto-resumo-qtd {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #777777;
+}
+
+/* ─── BLOCO DE VALORES (SUBTOTAL, DESCONTO, FRETE, TOTAL) ─── */
+.resumo-valores {
+    width: 100%;
+    max-width: 450px;
+    margin: 25px auto 0 auto;
+    background-color: #FBFBFB;
+    border: 1px dashed #E0E0E0; /* Linha pontilhada estilo cupom/recibo */
+    border-radius: 12px;
+    padding: 18px;
+}
+
+/* Linha genérica de valor */
+.linha-valor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    color: #555555;
+    font-weight: 500;
+}
+
+/* Destaque para a linha de desconto (14%) */
+.linha-valor.desconto {
+    color: #2ECC71; /* Verde para destacar que o cliente está economizando */
+    font-weight: 600;
+}
+
+/* Linha separadora sutil */
+.divisor-valores {
+    border: none;
+    border-top: 1px solid #EAEAEA;
+    margin: 12px 0;
+}
+
+/* Linha do Valor Total em destaque */
+.linha-valor.total {
+    font-size: 1.1rem;
+    color: #000000;
+    font-weight: 800; /* Bem negrito */
+    margin-bottom: 0;
+}
+
+#valor-total-geral {
+    color: #000000;
+}
+
+/* ─── BOTÃO DE PROSSEGUIR (AVANÇAR ETAPA) ─── */
+.btn-proxima-etapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 450px;
+    height: 54px;
+    margin: 20px auto 40px auto; /* Dá um recuo embaixo para não colar no fim da tela */
+    background-color: #2ECC71; /* Verde oficial de sucesso/checkout */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+/* Efeito sutil ao pressionar o botão no celular */
+.btn-proxima-etapa:active {
+    background-color: #27AE60;
+    transform: scale(0.98);
+}
+
+.btn-proxima-etapa i {
+    font-size: 1.4rem; /* Deixa a setinha um pouco maior e bonita */
+}
+
+/* ─── CONTROLE DE EXIBIÇÃO DAS SEÇÕES ─── */
+.secao-etapa {
+    display: none; /* Deixa as seções escondidas por padrão */
+}
+
+.secao-etapa.ativa {
+    display: block; /* Mostra apenas a seção que tiver a classe ativa */
+}
+
+/* ─── ESTILIZAÇÃO DO FORMULÁRIO DE ENDEREÇO ─── */
+.formulario-endereco {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espaço uniforme entre cada campo */
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.grupo-input label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #444444;
+}
+
+/* Marcação em vermelho para campos obrigatórios */
+.grupo-input label span {
+    color: #B11F1F;
+    font-weight: bold;
+}
+
+/* Marcação cinza clara para o Opcional */
+.grupo-input label .opcional {
+    color: #999999;
+    font-size: 0.72rem;
+    font-weight: 400;
+}
+
+/* Estilo elegante dos campos de digitação */
+.grupo-input input {
+    width: 100%;
+    height: 48px;
+    background-color: #F9F9F9;
+    border: 1px solid #EAEAEA;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 0.9rem;
+    color: #2D2D2D;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.2s ease;
+    -webkit-appearance: none; /* Remove estilos padrões do iOS */
+}
+
+/* Efeito azul/verde sutil quando o usuário clica no campo */
+.grupo-input input:focus {
+    background-color: #FFFFFF;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Alinhamento para campos lado a lado (Rua/Número e Cidade/Estado) */
+.linha-dupla-input {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+/* ─── DESIGN DA ETAPA DE REVISÃO E COMPRA ─── */
+.revisao-pedido-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #FAFAFA;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.subtitulo-revisao {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.revisao-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.revisao-rotulo {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #888888;
+}
+
+.revisao-conteudo {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2D2D2D;
+    line-height: 1.4;
+}
+
+/* Força o código do produto (BRT-0001) a se destacar ligeiramente */
+#revisao-codigo-produto {
+    color: #B11F1F;
+    font-weight: 700;
+}
+
+.divisor-revisao {
+    border: none;
+    border-top: 1px solid #EAEAEA;
+    margin: 4px 0;
+}
+
+/* Estilo para destacar o valor final no recibo */
+.revisao-item.total-final .revisao-rotulo {
+    color: #000000;
+    font-weight: 700;
+}
+
+.revisao-item.total-final .revisao-conteudo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #000000;
+}
+
+/* ─── BOTÃO EXCLUSIVO DO WHATSAPP ─── */
+.btn-final-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 450px;
+    height: 54px;
+    margin: 20px auto 40px auto;
+    background-color: #25D366; /* Verde Oficial do WhatsApp */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.btn-final-whatsapp:active {
+    background-color: #1ebd58;
+    transform: scale(0.98);
+}
+
+.btn-final-whatsapp i {
+    font-size: 1.45rem; /* Ícone do Whats em tamanho de destaque */
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resumo do Pedido — Brota Adesivos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="icon" type="image/webp" href="https://4c010466ba.cbaul-cdnwnd.com/1cf6b935d7a8ddd4774af758372afb34/200000013-c7945c7947/CAPA%20BROTA%20TCHUCA%202.0~2.webp?ph=4c010466ba">
+
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <div class="topo-preto">
+        <div class="logo-topo">
+            brtadesivos
+        </div>
+    </div>
+
+    <main>
+        <div class="container-etapas">
+            <div class="linha-conectora"></div>
+            
+            <div class="etapa-item ativa" id="step-resumo">
+                <div class="etapa-circulo">
+                    <i class="bi bi-cart-check-fill"></i>
+                </div>
+                <span class="etapa-texto">Resumo</span>
+            </div>
+
+            <div class="etapa-item" id="step-endereco">
+                <div class="etapa-circulo">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <span class="etapa-texto">Endereço</span>
+            </div>
+
+            <div class="etapa-item" id="step-pagamento">
+                <div class="etapa-circulo">
+                    <i class="bi bi-credit-card-fill"></i>
+                </div>
+                <span class="etapa-texto">Pagamento</span>
+            </div>
+        </div>
+
+        <div class="secao-etapa ativa" id="secao-resumo">
+            <h2 class="titulo-etapa">Resumo do Pedido</h2>
+            
+            <div class="conteudo-etapa">
+                <div class="lista-produtos-resumo">
+                    <div class="produto-resumo-card">
+                        <div class="produto-resumo-infos">
+                            <span class="produto-resumo-nome">ADESIVO PREMIUM</span>
+                            <span class="produto-resumo-qtd">Quantidade: 1x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumo-valores">
+                    <div class="linha-valor">
+                        <span>Subtotal (<span id="qtd-total-itens">1</span> itens)</span>
+                        <span id="valor-subtotal">R$ 32,50</span>
+                    </div>
+                    <div class="linha-valor">
+                        <span>Frete Fixo</span>
+                        <span>R$ 28,00</span>
+                    </div>
+                    <div class="linha-valor desconto">
+                        <span>Desconto (14%)</span>
+                        <span id="valor-desconto">- R$ 4,55</span>
+                    </div>
+                    <hr class="divisor-valores">
+                    <div class="linha-valor total">
+                        <span>Total Geral</span>
+                        <span id="valor-total-geral">R$ 55,95</span>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-proxima-etapa" id="btn-ir-endereco">
+                    <span>Continuar para Endereço</span>
+                    <i class="bi bi-arrow-right-short"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="secao-etapa" id="secao-endereco">
+            <h2 class="titulo-etapa">Endereço de Entrega</h2>
+            
+            <div class="conteudo-etapa">
+                <form class="formulario-endereco" id="form-endereco" onsubmit="event.preventDefault();">
+                    
+                    <div class="grupo-input">
+                        <label for="cep">CEP <span>*</span></label>
+                        <input type="text" id="cep" placeholder="00000-000" maxlength="9" required inputmode="numeric">
+                    </div>
+
+                    <div class="linha-dupla-input">
+                        <div class="grupo-input flex-3">
+                            <label for="rua">Rua / Logradouro <span>*</span></label>
+                            <input type="text" id="rua" placeholder="Nome da rua" required>
+                        </div>
+                        <div class="grupo-input flex-1">
+                            <label for="numero">Número <span>*</span></label>
+                            <input type="text" id="numero" placeholder="Nº" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="bairro">Bairro <span>*</span></label>
+                        <input type="text" id="bairro" placeholder="Seu bairro" required>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="complemento">Complemento <span class="opcional">(Opcional)</span></label>
+                        <input type="text" id="complemento" placeholder="Ap, bloco, casa...">
+                    </div>
+
+                    <div class="linha-dupla-input">
+                        <div class="grupo-input flex-3">
+                            <label for="cidade">Cidade <span>*</span></label>
+                            <input type="text" id="cidade" placeholder="Sua cidade" required>
+                        </div>
+                        <div class="grupo-input flex-1">
+                            <label for="estado">Estado <span>*</span></label>
+                            <input type="text" id="estado" placeholder="UF" maxlength="2" required style="text-transform: uppercase;">
+                        </div>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="telefone">Telefone / WhatsApp <span>*</span></label>
+                        <input type="tel" id="telefone" placeholder="(00) 00000-0000" required>
+                    </div>
+
+                    <button type="submit" class="btn-proxima-etapa" id="btn-ir-pagamento">
+                        <span>Ir para o Pagamento</span>
+                        <i class="bi bi-credit-card"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="secao-etapa" id="secao-pagamento">
+            <h2 class="titulo-etapa">Finalizar Pedido</h2>
+
+            <div class="conteudo-etapa">
+                <div class="revisao-pedido-container">
+                    <h3 class="subtitulo-revisao"><i class="bi bi-box-seam"></i> Detalhes do Produto</h3>
+                    <div class="revisao-item">
+                        <span class="revisao-rotulo">Itens selecionados:</span>
+                        <span class="revisao-conteudo" id="revisao-nome-produto">ADESIVO PREMIUM</span>
+                    </div>
+                    <div class="revisao-item">
+                        <span class="revisao-rotulo">Quantidade total:</span>
+                        <span class="revisao-conteudo" id="revisao-qtd-produto">1x</span>
+                    </div>
+
+                    <hr class="divisor-revisao">
+
+                    <h3 class="subtitulo-revisao"><i class="bi bi-geo-alt"></i> Destinatário & Entrega</h3>
+                    <div class="revisao-item">
+                        <span class="revisao-rotulo">Endereço:</span>
+                        <span class="revisao-conteudo" id="revisao-endereco-completo">Rua Exemplo, Nº 123...</span>
+                    </div>
+                    <div class="revisao-item">
+                        <span class="revisao-rotulo">Contato:</span>
+                        <span class="revisao-conteudo" id="revisao-telefone-contato">(00) 00000-0000</span>
+                    </div>
+
+                    <hr class="divisor-revisao">
+
+                    <div class="revisao-item total-final">
+                        <span class="revisao-rotulo">Valor Total Geral:</span>
+                        <span class="revisao-conteudo" id="revisao-total-geral">R$ 55,95</span>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-final-whatsapp" id="btn-enviar-whatsapp">
+                    <i class="bi bi-whatsapp"></i>
+                    <span>Finalizar no WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script2.js"></script>
+</body>
+</html>
