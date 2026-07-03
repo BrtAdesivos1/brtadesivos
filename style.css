@@ -18,7 +18,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* Fundo garantido para navegadores antigos */
+    height: 100dvh; /* CORREÇÃO IPHONE: Se adapta perfeitamente com as barras dinâmicas do iOS */
     background-color: #B12525; 
     display: flex;
     flex-direction: column;
@@ -27,14 +28,14 @@
     color: #FFFFFF; 
     text-align: center;
     padding: 20px;
-    padding-top: 230px; /* Controla a altura de onde tudo começa! Se quiser mais para baixo, aumente esse número */
+    padding-top: 12vh; /* Troca o valor fixo por um proporcional para dar espaço perfeito no iPhone */
     z-index: 9999; 
     
-    /* Acrescentado aqui: efeito para o sumiço suave */
+    /* efeito para o sumiço suave */
     transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-/* Acrescentado aqui: classe que o JS ativa para fazer sumir tudo */
+/* classe que o JS ativa para fazer sumir tudo */
 .tela-inicial.sumir {
     opacity: 0;
     visibility: hidden;
@@ -95,7 +96,12 @@
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 1.5px;
-    margin-top: 170px; /* Mantendo sua configuração */
+    
+    /* CORREÇÃO DO EMPURRÃO: margin-top auto calcula o espaço que sobrou e empurra o */
+    /* botão para a base visível de forma totalmente segura e elástica */
+    margin-top: auto; 
+    margin-bottom: 25px; /* Margem de respiro perfeita para não ser coberto pelo Safari/Chrome do iOS */
+    
     border: 2px solid #FFFFFF; 
     transition: all 0.6s ease; /* Ajustado para 0.6s para sumir junto com a tela */
     cursor: pointer;
@@ -107,3 +113,5 @@
     color: #FFFFFF; /* O texto vira branco */
     border-color: #FFFFFF; /* O contorno branco aparece */
 }
+
+/* ———— FIIMM 💤🚀 ———— */
