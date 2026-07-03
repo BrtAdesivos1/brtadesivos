@@ -159,7 +159,7 @@ body.travar-scroll {
 /* Texto de créditos no rodapé do menu lateral */
 .creditos-menu {
     position: absolute;
-    bottom: 370px;       /* Mantido sua distância perfeita */
+    bottom: 270px;       /* Mantido sua distância perfeita */
     width: 100%;        
     text-align: center; 
     color: #B9B9B9;     /* Mantido sua cor */
