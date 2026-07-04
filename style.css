@@ -3,12 +3,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    /* Bloqueia a seleção de texto e imagens */
-    -webkit-user-select: none;/* Safari */
-    -moz-user-select: none;/* Firefox */
-    -ms-user-select: none;/* IE10+ */
-    user-select: none;/* Padrão */
-    /* Impede o menu de salvar imagem no celular ao segurar o dedo */
+    
+    /* 🚀 REMOVE O QUADRADO AZUL AO CLICAR NO CELULAR */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+
+    /* Suas regras que já estavam aí: */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+ */
+    user-select: none;         /* Padrão */
     -webkit-touch-callout: none;
 }
 
