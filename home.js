@@ -58,7 +58,7 @@ if (botaoFechar && menuLateral) {
 }
 
 
-/* ---- 🛒 LÓGICA DO MENU DO CARRINHO (CORRIGIDO) 🛒 ---- */
+/* ---- 🛒 LÓGICA DO MENU DO CARRINHO 🛒 ---- */
 const menuCarrinho = document.getElementById('menu-carrinho');
 const botaoCarrinho = document.querySelector('.icone-cesta');
 const botaoFecharCarrinho = document.getElementById('botao-fechar-carrinho');
@@ -131,7 +131,32 @@ function renderizarCarrinho() {
   }
 }
 
-// FUNÇÃO ATUALIZADA EM HOME.JS PARA ACEITAR QUALQUER TIPO DE ID (TEXTO OU NÚMERO)
+// FUNÇÃO GLOBAL PARA ADICIONAR PRODUTOS DA VITRINE AO CARRINHO
+window.adicionarItemAoCarrinho = function(id, nome, preco, foto) {
+  const produtoExistente = produtosNoCarrinho.find(prod => String(prod.id) === String(id));
+
+  if (produtoExistente) {
+    produtoExistente.quantidade += 1;
+  } else {
+    produtosNoCarrinho.push({
+      id: String(id),
+      nome: nome,
+      preco: parseFloat(preco),
+      foto: foto,
+      quantidade: 1
+    });
+  }
+
+  renderizarCarrinho();
+
+  // Abre a gaveta do carrinho para feedback visual do usuário
+  if (menuCarrinho) {
+    menuCarrinho.classList.add('ativo');
+    document.body.classList.add('travar-scroll');
+  }
+};
+
+// FUNÇÃO PARA ACEITAR QUALQUER TIPO DE ID (TEXTO OU NÚMERO) AO REMOVER
 window.removerItemDoCarrinho = function(id) {
   produtosNoCarrinho = produtosNoCarrinho.filter(prod => String(prod.id) !== String(id));
   renderizarCarrinho();
@@ -149,7 +174,7 @@ if (btnFinalizar) {
 }
 
 
-/* ---- 🎛️ LÓGICA DA GAVETA DE FILTROS (APENAS ORDENAÇÃO) 🎛️ ---- */
+/* ---- 🎛️ LÓGICA DA GAVETA DE FILTROS E ALEATORIEDADE 🎛️ ---- */
 const btnAbrirFiltro = document.getElementById('btn-abrir-filtro');
 const btnFecharFiltro = document.getElementById('botao-fechar-filter'); 
 const gavetaFiltro = document.getElementById('gaveta-filter') || document.getElementById('gaveta-filtro');
@@ -162,6 +187,16 @@ const todosOsProdutosFiltro = document.querySelectorAll('.container-vitrine .pro
 
 // Salva a ordem padrão (HTML) original assim que a página carrega
 const ordemOriginalProdutos = Array.from(todosOsProdutosFiltro);
+
+// Função auxiliar matemática para embaralhar arrays (Algoritmo Fisher-Yates)
+function misturarProdutos(array) {
+  let resultado = [...array];
+  for (let i = resultado.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [resultado[i], resultado[j]] = [resultado[j], resultado[i]];
+  }
+  return resultado;
+}
 
 // Função para abrir os filtros e congelar o fundo
 if (btnAbrirFiltro && gavetaFiltro && overlayFiltro) {
@@ -189,7 +224,7 @@ if (overlayFiltro) {
   overlayFiltro.addEventListener('click', fecharFiltros);
 }
 
-// Lógica direta de ordenação (Destaque, Menor e Maior Preço)
+// Lógica de ordenação (Aleatório, Menor e Maior Preço)
 if (btnAplicarFiltro) {
   btnAplicarFiltro.addEventListener('click', () => {
     const ordenacaoSelecionada = document.querySelector('input[name="ordenacao"]:checked')?.value;
@@ -211,11 +246,11 @@ if (btnAplicarFiltro) {
           return parseFloat(cardB.getAttribute('data-preco') || 0) - parseFloat(cardA.getAttribute('data-preco') || 0);
         });
       } else {
-        // Se for 'destaque' ou qualquer outro, simplesmente volta para a ordem natural do HTML original
-        arrayProdutos = ordemOriginalProdutos;
+        // Se for 'aleatorio' (ou a opção padrão marcada no HTML), mistura os itens na hora!
+        arrayProdutos = misturarProdutos(arrayProdutos);
       }
 
-      // Reinjeta fisicamente a ordem correta dos cards no container do site
+      // Reinjeta fisicamente a nova ordem dos cards no container do site
       arrayProdutos.forEach(card => {
         containerVitrine.appendChild(card);
       });
@@ -328,5 +363,19 @@ if (botaoTopo) {
   });
 }
 
-// Inicializa o carrinho ao carregar para renderizar itens persistidos
+
+/* ---- ⚡ INICIALIZAÇÃO DA PÁGINA COM ALEATORIEDADE INTELIGENTE ⚡ ---- */
+if (containerVitrine && todosOsProdutosFiltro.length > 0) {
+  // Joga uma moeda virtual (50% de chance de dar true)
+  const deveEmbaralhar = Math.random() < 0.5;
+
+  if (deveEmbaralhar) {
+    // Se cair nos 50%, mistura tudo de forma aleatória
+    const produtosMisturados = misturarProdutos(Array.from(todosOsProdutosFiltro));
+    produtosMisturados.forEach(card => containerVitrine.appendChild(card));
+  }
+  // Caso contrário, mantém a ordem original padrão vinda do arquivo HTML
+}
+
+// Inicializa os elementos e dados salvos no carrinho
 renderizarCarrinho();
