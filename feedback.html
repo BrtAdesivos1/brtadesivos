@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feedback | Brota Tchuca Oficial</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Script para Rolagem Suave Premium e Amortecimento -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+
+    <!-- ─── MENU LATERAL ESQUERDO ─── -->
+    <div id="menu-lateral" class="menu-lateral">
+        <div class="topo-menu-lateral">
+            <i class="bi bi-x icone-fechar" id="botao-fechar-menu"></i>
+        </div>
+        
+        <div class="conteudo-menu-lateral">
+            <a href="home.html" class="item-menu-lateral">INÍCIO</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Tenho%20interesse%20na%20camiseta%20%22Brota%20Tchuca%22" class="item-menu-lateral">CAMISETA</a>
+            <a href="https://wa.me/5598987261116?text=Opa%21%20Tenho%20interesse%20nas%20m%C3%BAsicas%20atualizadas%20%E2%80%94%20Edi%C3%A7%C3%A3o%20de%20Junho." class="item-menu-lateral">REPERTÓRIO</a>
+            <a href="https://chat.whatsapp.com/BGoASDx1FXmJaKVPWAYPkB" class="item-menu-lateral">GRUPO OFICIAL</a>
+            <a href="https://wa.me/5598987261116?text=Ol%C3%A1%21%20Preciso%20de%20suporte.%20Vou%20descrever%20abaixo%20minha%20d%C3%BAvida%20ou%20o%20problema%20que%20estou%20enfrentando%20no%20site%3A" class="item-menu-lateral">SUPORTE</a>
+            <a href="https://wa.me/5598987261116?text=Ideias%20para%20Adesivos%3A" class="item-menu-lateral">IDEIAS PARA ADESIVOS</a>
+            <a href="sobre.html" class="item-menu-lateral">SOBRE</a>
+        </div>
+        
+        <div class="creditos-menu">
+            Distributed by: <a href="https://www.instagram.com/venancio_adesivos" target="_blank" class="link-creditos">Venâncio Adesivos</a>
+        </div>
+    </div>
+
+    <!-- ─── TOPO PRETO GLOBAL E CARROSSEL ─── -->
+    <div class="topo-preto">
+        <div class="carrossel-container">
+            <div class="carrossel-frases">
+                <div class="frase-item">🚚 ENTREGA PARA TODO BRASIL!</div>
+                <div class="frase-item">⚡ ECONOMIZE 14% PAGANDO VIA PIX!</div>
+                <div class="frase-item">🔒 COMPRA 100% SEGURA</div>
+                <div class="frase-item">🇧🇷 FRETE FIXO PARA TODO O BRASIL | APENAS R$ 28,00</div>
+            </div>
+        </div>
+        
+        <div class="logo-topo">
+            <i class="bi bi-filter-left icone-menu"></i>
+            brtadesivos
+        </div>
+    </div>
+
+<!-- ─── ÁREA DE CONTEÚDO DA PÁGINA (MIOLO DE FEEDBACK) ─── -->
+<main class="container-feedback-conteudo">
+    
+    <!-- Bloco do Formulário -->
+    <section class="card-feedback-form">
+        <h2>Deixe seu Feedback ✨</h2>
+        <p class="subtitulo-form">Sua opinião é muito importante para a Brota Tchuca!</p>
+        
+        <form id="form-depoimento">
+            <div class="grupo-campo">
+                <label for="nome-usuario">Nome/Apelido</label>
+                <input type="text" id="nome-usuario" placeholder="Ex: João Silva" required>
+            </div>
+            
+            <div class="grupo-campo">
+                <label for="cidade-usuario">Sua Cidade / Estado</label>
+                <input type="text" id="cidade-usuario" placeholder="Ex: Blumenau - SC" required>
+            </div>
+            
+            <div class="grupo-campo">
+                <label>Sua Avaliação</label>
+                <div class="estrelas-selecao">
+                    <i class="bi bi-star-fill estrela-btn" data-valor="1"></i>
+                    <i class="bi bi-star-fill estrela-btn" data-valor="2"></i>
+                    <i class="bi bi-star-fill estrela-btn" data-valor="3"></i>
+                    <i class="bi bi-star-fill estrela-btn" data-valor="4"></i>
+                    <i class="bi bi-star-fill estrela-btn" data-valor="5"></i>
+                </div>
+            </div>
+            
+            <div class="grupo-campo">
+                <label for="texto-usuario">O que você achou dos adesivos e do atendimento?</label>
+                <textarea id="texto-usuario" rows="4" placeholder="Escreva aqui seu comentário..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-enviar-feedback" id="btn-enviar">
+                <span class="texto-btn">Enviar Feedback</span>
+                <div class="loader-btn" id="loader-btn"></div>
+            </button>
+        </form>
+        
+        <!-- Mensagem de Sucesso Embutida -->
+        <div class="mensagem-sucesso-container" id="msg-sucesso">
+            <i class="bi bi-check-circle-fill icone-sucesso"></i>
+            <h3>Feedback Postado!</h3>
+            <p>Redirecionando para o WhatsApp...</p>
+        </div>
+    </section>
+    
+    <!-- Seção onde os Feedbacks Aparecem -->
+    <section class="lista-feedbacks-clientes">
+        <h3>Depoimentos Recentes 💬</h3>
+        <div id="mural-depoimentos">
+            <!-- Apenas 2 depoimentos fixados com avatar genérico -->
+            <div class="card-depoimento-postado">
+                <div class="bloco-avatar-depoimento">
+                    <!-- Substitua a URL da imagem abaixo pela foto real depois se quiser -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="avatar-cliente" alt="Avatar Cliente">
+                    <div class="infos-coluna">
+                        <div class="topo-depoimento">
+                            <strong>Carlos H.</strong>
+                            <span class="cidade-depoimento">Imperatriz - MA</span>
+                        </div>
+                        <div class="estrelas-postadas">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="texto-depoimento">"Os adesivos chegaram muito rápido e a qualidade do vinil é absurda! Já lavei o carro três vezes e continua intacto. Recomendo demais!"</p>
+            </div>
+            
+            <div class="card-depoimento-postado">
+                <div class="bloco-avatar-depoimento">
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="avatar-cliente" alt="Avatar Cliente">
+                    <div class="infos-coluna">
+                        <div class="topo-depoimento">
+                            <strong>Amanda C.</strong>
+                            <span class="cidade-depoimento">São Luís - MA</span>
+                        </div>
+                        <div class="estrelas-postadas">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="texto-depoimento">"Atendimento excelente no suporte e os adesivos da Brota Tchuca deixaram minha moto com outra cara. Nota 10!"</p>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+    <script src="feedback.js"></script>
+</body>
+</html>
