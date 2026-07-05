@@ -434,3 +434,35 @@ main {
 .btn-final-whatsapp i {
     font-size: 1.45rem; /* Ícone do Whats em tamanho de destaque */
 }
+
+/* ─── BOTÃO VOLTAR PARA O ENDEREÇO ─── */
+.btn-voltar-endereco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 450px;
+    height: 50px;
+    margin: -25px auto 40px auto; /* Encaixa perfeitamente abaixo do botão do whats */
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    border: 1.5px solid #EAEAEA;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Efeito ao clicar no celular */
+.btn-voltar-endereco:active {
+    background-color: #F5F5F5;
+    border-color: #D6D6D6;
+    transform: scale(0.98);
+}
+
+.btn-voltar-endereco i {
+    font-size: 1.35rem; /* Ajusta a setinha de voltar */
+    line-height: 1;
+}
