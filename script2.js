@@ -12,24 +12,13 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-/* ---- 🔒 BLINDAGEM DE SEGURANÇA ORIGINAL ---- */
-
-// Bloqueia o clique direito e o clique longo no celular
-document.addEventListener('contextmenu', function(event) {
-  event.preventDefault();
-});
-
-// Bloqueia os atalhos de teclado Ctrl+S (Salvar) e Ctrl+U (Ver código fonte)
-document.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && (event.key === 's' || event.key === 'S' || event.key === 'u' || event.key === 'U')) {
-    event.preventDefault();
-  }
-});
 
 /* ---- ⚙️ CONFIGURAÇÃO E VARIÁVEIS DO SISTEMA ---- */
 const NUMERO_WHATSAPP = "5598987261116";
 
 const btnIrEndereco = document.getElementById('btn-ir-endereco');
+const btnVoltarEndereco = document.getElementById('btn-voltar-endereco');
+
 const secaoResumo = document.getElementById('secao-resumo');
 const secaoEndereco = document.getElementById('secao-endereco');
 const secaoPagamento = document.getElementById('secao-pagamento');
@@ -38,13 +27,14 @@ const stepEndereco = document.getElementById('step-endereco');
 const stepPagamento = document.getElementById('step-pagamento');
 
 let dadosPedido = {
-  nomeProduto: "", // Vai guardar o texto formatado para o WhatsApp (com cor e tamanho)
+  nomeProduto: "", // Vai guardar o texto formatado para o WhatsApp
   qtd: 0,
   subtotal: 0,
   desconto: 0,
   frete: 28.00,
   totalGeral: 0
 };
+
 
 // ─── CÁLCULOS (Adesivo + Frete - Desconto) ───
 function executarCalculos() {
@@ -57,13 +47,14 @@ function executarCalculos() {
   document.getElementById('valor-desconto').innerText = `- R$ ${dadosPedido.desconto.toFixed(2).replace('.', ',')}`;
   document.getElementById('valor-total-geral').innerText = `R$ ${dadosPedido.totalGeral.toFixed(2).replace('.', ',')}`;
   
-  // Na revisão final, como pode ter HTML das quebras de linha, usamos innerHTML
+  // Na revisão final, injeta os itens formatados
   document.getElementById('revisao-nome-produto').innerHTML = dadosPedido.nomeProduto;
   document.getElementById('revisao-qtd-produto').innerText = `${dadosPedido.qtd}x`;
   document.getElementById('revisao-total-geral').innerText = `R$ ${dadosPedido.totalGeral.toFixed(2).replace('.', ',')}`;
 }
 
-// ─── CARREGAR DO CARRINHO (CORRIGIDO PARA PEGAR TAMANHO E COR REAIS) ───
+
+// ─── CARREGAR DO CARRINHO (SEM COR E SEM TAMANHO) ───
 function carregarDadosDoCarrinho() {
   const carrinhoSalvo = localStorage.getItem('carrinho_brota_tchuca');
   const containerLista = document.querySelector('.lista-produtos-resumo');
@@ -82,32 +73,23 @@ function carregarDadosDoCarrinho() {
         const qtdItem = parseInt(item.quantidade || item.quantity || 1);
         let nomeItem = item.nome || item.name || "Adesivo";
         
-        // CORREÇÃO: Tenta pegar o tamanho real salvo. Se o nome já contiver parênteses com tamanho, ele também respeita.
-        let corItem = item.cor || "Variado";
-        let tamanhoItem = item.tamanho || "Padrão";
-        
-        // Se por acaso o tamanho veio como "Padrão" mas está escrito no nome do item, limpa o nome para não duplicar
-        if (nomeItem.includes('(') && (item.tamanho && item.tamanho !== "Padrão")) {
-          // Mantém o nome estruturado limpo
+        // Se o nome contiver parênteses antigos com tamanhos, limpa para manter o padrão visual limpo
+        if (nomeItem.includes('(')) {
           nomeItem = nomeItem.split('(')[0].trim();
         }
         
         somaSubtotal += (precoItem * qtdItem);
         somaQtd += qtdItem;
         
-        // Formata a mensagem que vai aparecer na revisão final e no WhatsApp
-        detalhesProdutosZap.push(`• *${nomeItem}* (${qtdItem}x)\n  🎨 Cor: ${corItem} | 📏 Tam: ${tamanhoItem}`);
+        // Mensagem limpa apenas com Nome e Quantidade para o WhatsApp
+        detalhesProdutosZap.push(`• *${nomeItem}* (${qtdItem}x)`);
         
-        // Monta o card visual na Etapa 1 mostrando os detalhes escolhidos
+        // Card visual limpo para a Etapa 1 e Etapa de Pagamento (Sem cor e sem tamanho)
         const cardHTML = `
           <div class="produto-resumo-card" style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; background: #fff; padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #eee; width: 100%;">
             <div style="display: flex; justify-content: space-between; width: 100%;">
               <span class="produto-resumo-nome" style="font-weight: 700; color: #333; font-size: 0.85rem;">${nomeItem}</span>
               <span class="produto-resumo-qtd" style="font-weight: 800; color: #000; font-size: 0.85rem;">${qtdItem}x</span>
-            </div>
-            <div style="font-size: 0.75rem; color: #777; font-weight: 500;">
-              🎨 Cor: <span style="color: #000; font-weight: 600;">${corItem}</span> | 
-              📏 Tamanho: <span style="color: #2ECC71; font-weight: 700;">${tamanhoItem}</span>
             </div>
           </div>
         `;
@@ -116,7 +98,6 @@ function carregarDadosDoCarrinho() {
       
       dadosPedido.subtotal = somaSubtotal;
       dadosPedido.qtd = somaQtd;
-      // Salva no objeto trocando as quebras de linha para aparecer correto na tela de revisão
       dadosPedido.nomeProduto = detalhesProdutosZap.join("\n").replace(/\n/g, "<br>");
     }
   } else {
@@ -125,7 +106,8 @@ function carregarDadosDoCarrinho() {
   executarCalculos();
 }
 
-// ─── TRAVAS DE SEGURANÇA E VALIDAÇÕES NOS INPUTS ───
+
+/* ---- 🔒 TRAVAS DE SEGURANÇA E VALIDAÇÕES NOS INPUTS ---- */
 document.getElementById('cep').addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '');
   if (v.length > 5) {
@@ -147,7 +129,10 @@ document.getElementById('telefone').addEventListener('input', (e) => {
   e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
 });
 
-// ─── NAVEGAÇÃO ENTRE ETAPAS ───
+
+/* ---- 🧭 NAVEGAÇÃO ENTRE ETAPAS ---- */
+
+// Avançar: Resumo -> Endereço
 btnIrEndereco.addEventListener('click', () => {
   secaoResumo.classList.remove('ativa');
   secaoEndereco.classList.add('ativa');
@@ -155,6 +140,17 @@ btnIrEndereco.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Voltar: Pagamento -> Endereço (Preserva os inputs preenchidos)
+if (btnVoltarEndereco) {
+  btnVoltarEndereco.addEventListener('click', () => {
+    secaoPagamento.classList.remove('ativa');
+    stepPagamento.classList.remove('ativa');
+    secaoEndereco.classList.add('ativa');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Avançar: Endereço -> Pagamento
 document.getElementById('form-endereco').addEventListener('submit', (e) => {
   e.preventDefault();
   
@@ -183,12 +179,13 @@ document.getElementById('form-endereco').addEventListener('submit', (e) => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ─── DISPARO PARA O WHATSAPP ───
+
+/* ---- 📲 DISPARO PARA O WHATSAPP ---- */
 document.getElementById('btn-enviar-whatsapp').addEventListener('click', () => {
   const enderecoCompleto = document.getElementById('revisao-endereco-completo').innerText;
   const telefoneContato = document.getElementById('revisao-telefone-contato').innerText;
   
-  // Transforma o padrão HTML de volta para texto limpo que o WhatsApp entende
+  // Transforma o padrão HTML de volta para texto limpo que o WhatsApp entende (sem cor/tamanho)
   let textoProdutosZap = dadosPedido.nomeProduto.replace(/<br>/g, "\n").replace(/<[^>]*>/g, "");
   
   let textoMensagem = `🚀 *NOVO PEDIDO - BRT ADESIVOS*\n\n`;
@@ -205,4 +202,7 @@ document.getElementById('btn-enviar-whatsapp').addEventListener('click', () => {
   window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(textoMensagem)}`, '_blank');
 });
 
+// Inicialização
 window.addEventListener('DOMContentLoaded', carregarDadosDoCarrinho);
+
+// ———— FIM ————
