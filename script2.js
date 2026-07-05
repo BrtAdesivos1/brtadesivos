@@ -197,7 +197,7 @@ document.getElementById('btn-enviar-whatsapp').addEventListener('click', () => {
   textoMensagem += `🚚 *Frete Fixo:* R$ ${dadosPedido.frete.toFixed(2).replace('.', ',')}\n`;
   textoMensagem += `📉 *Desconto (14% aplicado):* - R$ ${dadosPedido.desconto.toFixed(2).replace('.', ',')}\n`;
   textoMensagem += `⭐ *TOTAL REAL A PAGAR:* R$ ${dadosPedido.totalGeral.toFixed(2).replace('.', ',')}\n\n`;
-  textoMensagem += `_Aguardo as chaves Pix para pagamento!_`;
+  textoMensagem += `_Fico no aguardo da sua chave Pix para realizar o pagamento._`;
   
   window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(textoMensagem)}`, '_blank');
 });
