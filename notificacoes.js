@@ -1,7 +1,7 @@
 /* ─── PAINEL DE CONTROLE DE NOTIFICAÇÕES DA HOME ─── */
 
 // ⚠️ REGRA OPERACIONAL: Sempre que mudar o aviso, mude o número da versão abaixo! (Ex: 'v1', 'v2', 'v3'...)
-const VERSAO_NOTIFICACAO = 'v5'; 
+const VERSAO_NOTIFICACAO = 'v6'; 
 
 // 📝 DIGITE AQUI A SUA NOVA MENSAGEM:
 const MENSAGEM_PRODUTO = "⚠️ Em breve: os valores dos adesivos e do frete serão atualizados."
