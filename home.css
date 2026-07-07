@@ -939,3 +939,54 @@ body.travar-scroll {
     display: block;
     opacity: 1;
 }
+
+/* ─── CAIXA DE NOTIFICAÇÃO FLUTUANTE ─── */
+.notificacao-toast {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    
+    /* 🔽 ALTERE ESTA LINHA PARA 99 PARA FICAR ATRÁS DOS MENUS 🔽 */
+    z-index: 99;
+    
+    transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #222222;
+}
+
+/* Classe que ativa a aparição */
+.notificacao-toast.mostrar {
+    top: 20px; /* Desce para 20px do topo da tela */
+}
+
+.notificacao-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icone-sino {
+    color: #2ECC71; /* Cor verde para dar destaque de novidade */
+    font-size: 1.2rem;
+    animation: balancarSino 1s ease infinite alternate;
+}
+
+#texto-notificacao {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+/* Animaçãozinha pro sino chamar atenção */
+@keyframes balancarSino {
+    0% { transform: rotate(-15deg); }
+    100% { transform: rotate(15deg); }
+}
