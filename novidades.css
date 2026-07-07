@@ -216,7 +216,7 @@ body.travar-scroll {
 .card-novidade::before {
     content: '';
     position: absolute;
-    left: -22px;
+    left: -22.8px;
     top: 20px;
     width: 10px;
     height: 10px;
