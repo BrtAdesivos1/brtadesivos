@@ -1,0 +1,298 @@
+/* ==========================================================================
+   🔒 ESTILOS GLOBAIS E BLINDAGEM TÁTIL
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+    /* REMOVE QUADRADO AZUL EM TOQUES MOBILE */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+
+    /* BLOQUEIA SELEÇÃO DE TEXTO/IMAGENS */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+body.travar-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   ⬛ TOPO PRETO ARREDONDADO E CARROSSEL
+   ========================================================================== */
+.topo-preto {
+    width: 100%;
+    height: 150px;
+    background-color: #000000;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.carrossel-container {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 3px;
+}
+
+.carrossel-frases {
+    display: flex;
+    width: 200%;
+    transition: transform 0.8s ease-in-out;
+}
+
+.frase-item {
+    width: 100%;
+    flex-shrink: 0;
+    text-align: center;
+    color: #2ECC71;
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 0 10px;
+}
+
+.logo-topo {
+    position: relative;
+    text-align: center;
+    color: #B11F1F;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -1.3px;
+    margin-top: 25px;
+}
+
+.icone-menu {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFFFFF;
+    font-size: 2.0rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   🍔 MENU LATERAL ESQUERDO
+   ========================================================================== */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #F4F4F4;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.menu-lateral.ativo {
+    transform: translateX(0);
+}
+
+.topo-menu-lateral {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+}
+
+.icone-fechar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 8px;
+    font-size: 2.1rem;
+    color: #000000;
+    cursor: pointer;
+}
+
+.conteudo-menu-lateral {
+    width: 100%;
+    padding: 7px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-menu-lateral {
+    text-decoration: none;
+    color: #303030;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 15px 17px;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.creditos-menu {
+    position: absolute;
+    bottom: 270px;
+    width: 100%;        
+    text-align: center; 
+    color: #B9B9B9;      
+    font-size: 0.7rem;  
+    font-weight: 500;   
+    letter-spacing: 0.8px;
+}
+
+.link-creditos {
+    text-decoration: none;
+    color: #B9B9B9;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ✨ DESIGN DO MURAL DE NOVIDADES (ESTILO TIMELINE)
+   ========================================================================== */
+.container-novidades {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto 50px auto;
+    padding: 0 17px;
+}
+
+.titulo-pagina {
+    font-size: 1.3rem;
+    color: #303030;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+    
+    animation: entrarSuave 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+}
+
+.subtitulo-pagina {
+    font-size: 0.8rem;
+    color: #A0A0A0;
+    font-weight: 500;
+    margin-bottom: 25px;
+    
+    animation: entrarSuave 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+
+.linha-do-tempo {
+    position: relative;
+    border-left: 2px solid #F4F4F4;
+    padding-left: 15px;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cartão da atualização */
+.card-novidade {
+    position: relative;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    
+    animation: entrarSuave 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+/* 🎯 BOLINHA PRETA COM ANIMAÇÃO DE PULSO/ONDA INFINITA */
+.card-novidade::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #000000;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    z-index: 2;
+    
+    /* Configuração da sombra que cria o efeito de contorno saindo dela */
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+    animation: pulsar 2s infinite ease-in-out;
+}
+
+.tag-notificacao {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.tag-lancamento { background-color: rgba(52, 152, 219, 0.15); color: #3498DB; }
+.tag-aviso { background-color: rgba(241, 196, 15, 0.15); color: #F1C40F; }
+
+.data-notificacao {
+    float: right;
+    font-size: 0.7rem;
+    color: #B9B9B9;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.titulo-notificacao {
+    font-size: 0.9rem;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    clear: both;
+}
+
+.texto-notificacao {
+    font-size: 0.78rem;
+    color: #505050;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   🎥 ANIMACÕES (FADE IN E PULSO DAS BOLINHAS)
+   ========================================================================== */
+
+/* 🌊 Animação da onda saindo da bolinha preta */
+@keyframes pulsar {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+    }
+    70% {
+        /* O contorno se expande até 8px de distância e vai sumindo */
+        box-shadow: 0 0 0 8px rgba(0, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* 📥 Animação de entrada dos textos e cards */
+@keyframes entrarSuave {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
